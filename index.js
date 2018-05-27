@@ -23,7 +23,7 @@
  */
 
 const http = require('http'),
-      https = require('https'),
+      request = require('request'),
       schedule = require('node-schedule');
 
 const units = {
@@ -119,17 +119,21 @@ module.exports.send = (message, imageUrl, cb) => {
         cb = imageUrl;
     }
 
-    https.request({
-        hostname: 'api.groupme.com',
-        path : '/v3/bots/post',
-        method : 'POST'
-    }, res => {
-        if (cb) cb(res.statusCode === 202 ? undefined : new Error(res));
-    }).on('error', err => {
-        if (cb) cb(err);
-    }).on('timeout', err => {
-        if (cb) cb(err);
-    }).end(JSON.stringify(params));
+    request({
+        url : 'https://api.groupme.com/v3/bots/post',
+        method : 'POST',
+        qs : params
+    }, (err, res, body) => {
+        if (cb) {
+            if (err) {
+                cb(err);
+            } else if (res.statusCode === 202) {
+                cb();
+            } else {
+                cb(new Error(body));
+            }
+        }
+    });
 };
 
 /**

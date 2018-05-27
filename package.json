@@ -1,6 +1,6 @@
 {
   "name": "my-groupme-bot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple GroupMe bot building and hosting module.",
   "main": "index.js",
   "repository": {
@@ -24,6 +24,7 @@
     }
   ],
   "dependencies": {
-    "node-schedule": "^1.3.0"
+    "node-schedule": "^1.3.0",
+    "request": "^2.87.0"
   }
 }
