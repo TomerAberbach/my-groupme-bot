@@ -218,23 +218,30 @@ module.exports.pattern = (desc, pattern, respond) => {
  * Returns the module itself to allow for builder pattern.
  * @param {string} name - A name for the command which will be called as follows: '/name'.
  * @param {string} [desc] - A description of the command to be added.
+ * @param {string} [sep] - A RegExp or string to separate the command arguments.
  * @param {commandRespond} respond - A callback which uses the bot to respond to a user command message.
  * @returns {*}
  */
-module.exports.command = (name, desc, respond) => {
+module.exports.command = (name, desc, sep, respond) => {
     if (typeof respond === 'undefined') {
-        respond = desc;
-        desc = '';
+        if (typeof sep === 'undefined') {
+            respond = desc;
+            desc = '';
+        } else {
+            respond = sep;
+            sep = /\s+/
+        }
     } else {
         desc = ` - ${desc.trim()}`
     }
 
+    sep = new RegExp(typeof sep === 'string' ? quote(sep) : sep, 'g')
     const regex = new RegExp(`^/${quote(name)}(\\s|$)`, 'g');
 
     return module.exports.pattern(
         `/${name}${desc}`,
         regex,
-        message => respond(message, message['text'].replace(regex, '').trim().split(/\s+/g))
+        message => respond(message, message['text'].replace(regex, '').trim().split(sep))
     );
 };
 
