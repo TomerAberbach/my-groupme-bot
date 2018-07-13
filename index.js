@@ -230,6 +230,7 @@ module.exports.command = (name, desc, sep, respond) => {
         } else {
             respond = sep;
             sep = /\s+/
+            desc = ` - ${desc.trim()}`
         }
     } else {
         desc = ` - ${desc.trim()}`
