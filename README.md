@@ -1,4 +1,6 @@
 # My GroupMe Bot
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTomerADev%2Fmy-groupme-bot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FTomerADev%2Fmy-groupme-bot?ref=badge_shield)
+
 A simple GroupMe bot building and hosting module.
 
 ## Examples
@@ -57,3 +59,7 @@ bot.config('YOUR_BOT_ID')
 ```
 
 Documentation for the all the functions can be found [here](http://tomeraberbach.com/my-groupme-bot/module-my-groupme-bot.html) and some more examples can be found in the 'examples' folder.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTomerADev%2Fmy-groupme-bot.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FTomerADev%2Fmy-groupme-bot?ref=badge_large)
