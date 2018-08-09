@@ -22,67 +22,66 @@
  * @property {string} user_id - ID of the user which sent the message.
  */
 
-const http = require('http'),
-      request = require('request'),
-      schedule = require('node-schedule');
+const http = require('http')
+const request = require('request')
+const schedule = require('node-schedule')
 
 const units = {
-    millisecond : 1,
-    milliseconds : 1,
-    millisec : 1,
-    millisecs : 1,
-    ms : 1,
+  millisecond: 1,
+  milliseconds: 1,
+  millisec: 1,
+  millisecs: 1,
+  ms: 1,
 
-    second : 1000,
-    seconds : 1000,
-    sec : 1000,
-    secs : 1000,
-    s : 1000,
+  second: 1000,
+  seconds: 1000,
+  sec: 1000,
+  secs: 1000,
+  s: 1000,
 
-    minute : 60000,
-    minutes : 60000,
-    min : 60000,
-    mins : 60000,
-    m : 60000,
+  minute: 60000,
+  minutes: 60000,
+  min: 60000,
+  mins: 60000,
+  m: 60000,
 
-    hour : 3600000,
-    hours : 3600000,
-    h : 3600000,
+  hour: 3600000,
+  hours: 3600000,
+  h: 3600000,
 
-    day : 86400000,
-    days : 86400000,
-    d : 86400000
-};
-
-let botId;
-const features = [];
-
-const server = http.createServer((req, res) => {
-    const chunks = [];
-
-    req.on('data', chunk => chunks.push(chunk)).on('end', () => {
-        if (req.method === 'POST') {
-            res.writeHead(200);
-            res.end('OK');
-
-            const message = JSON.parse(chunks.join(''));
-
-            if (message['sender_type'] === 'user') {
-                features
-                    .filter(feature => feature.check && feature.check(message))
-                    .forEach(feature => feature.respond(message));
-            }
-        } else {
-            res.writeHead(400);
-            res.end('Invalid request method!');
-        }
-    });
-});
-
-function quote(str) {
-    return str.replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&');
+  day: 86400000,
+  days: 86400000,
+  d: 86400000
 }
 
+let botId
+const features = []
+
+const server = http.createServer((req, res) => {
+  const chunks = []
+
+  req.on('data', chunk => chunks.push(chunk)).on('end', () => {
+    if (req.method === 'POST') {
+      res.writeHead(200)
+      res.end('OK')
+
+      const message = JSON.parse(chunks.join(''))
+
+      if (message['sender_type'] === 'user') {
+        features
+          .filter(feature => feature.check && feature.check(message))
+          .forEach(feature => feature.respond(message))
+      }
+    } else {
+      res.writeHead(400)
+      res.end('Invalid request method!')
+    }
+  })
+})
+
+function quote (str) {
+  return str.replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&')
+}
 
 /**
  * Configures the module with the ID of the bot.<br/>
@@ -91,9 +90,9 @@ function quote(str) {
  * @returns {*}
  */
 module.exports.config = id => {
-    botId = id;
-    return module.exports;
-};
+  botId = id
+  return module.exports
+}
 
 /**
  * A callback which receives the potential error result of sending a GroupMe bot message.
@@ -108,33 +107,33 @@ module.exports.config = id => {
  * @param {send} [cb] - A callback which receives the potential error result of sending a GroupMe bot message.
  */
 module.exports.send = (message, imageUrl, cb) => {
-    const params = {
-        bot_id : botId,
-        text : message.trim()
-    };
+  const params = {
+    bot_id: botId,
+    text: message.trim()
+  }
 
-    if (typeof imageUrl === 'string') {
-        params.picture_url = imageUrl;
-    } else if (typeof cb === 'undefined') {
-        cb = imageUrl;
+  if (typeof imageUrl === 'string') {
+    params.picture_url = imageUrl
+  } else if (typeof cb === 'undefined') {
+    cb = imageUrl
+  }
+
+  request({
+    url: 'https://api.groupme.com/v3/bots/post',
+    method: 'POST',
+    qs: params
+  }, (err, res, body) => {
+    if (cb) {
+      if (err) {
+        cb(err)
+      } else if (res.statusCode === 202) {
+        cb()
+      } else {
+        cb(new Error(body))
+      }
     }
-
-    request({
-        url : 'https://api.groupme.com/v3/bots/post',
-        method : 'POST',
-        qs : params
-    }, (err, res, body) => {
-        if (cb) {
-            if (err) {
-                cb(err);
-            } else if (res.statusCode === 202) {
-                cb();
-            } else {
-                cb(new Error(body));
-            }
-        }
-    });
-};
+  })
+}
 
 /**
  * A callback which checks if a message should be responded to by the bot.
@@ -158,20 +157,20 @@ module.exports.send = (message, imageUrl, cb) => {
  * @returns {*}
  */
 module.exports.feature = (desc, check, respond) => {
-    if (typeof respond === 'undefined') {
-        respond = check;
-        check = desc;
-        desc = '';
-    }
+  if (typeof respond === 'undefined') {
+    respond = check
+    check = desc
+    desc = ''
+  }
 
-    features.push({
-        desc : desc,
-        check : check,
-        respond : respond
-    });
+  features.push({
+    desc: desc,
+    check: check,
+    respond: respond
+  })
 
-    return module.exports;
-};
+  return module.exports
+}
 
 /**
  * A callback which uses the bot to respond to a message and pattern matches in it.
@@ -189,22 +188,22 @@ module.exports.feature = (desc, check, respond) => {
  * @returns {*}
  */
 module.exports.pattern = (desc, pattern, respond) => {
-    if (typeof respond === 'undefined') {
-        respond = pattern;
-        pattern = desc;
-        desc = '';
-    }
+  if (typeof respond === 'undefined') {
+    respond = pattern
+    pattern = desc
+    desc = ''
+  }
 
-    if (typeof pattern === 'string') {
-        pattern = new RegExp(quote(pattern), 'g');
-    }
+  if (typeof pattern === 'string') {
+    pattern = new RegExp(quote(pattern), 'g')
+  }
 
-    return module.exports.feature(
-        desc,
-        message => pattern.test(message['text']),
-        message => respond(message, message['text'].match(pattern))
-    );
-};
+  return module.exports.feature(
+    desc,
+    message => pattern.test(message['text']),
+    message => respond(message, message['text'].match(pattern))
+  )
+}
 
 /**
  * A callback which uses the bot to respond to a user command message.
@@ -223,28 +222,28 @@ module.exports.pattern = (desc, pattern, respond) => {
  * @returns {*}
  */
 module.exports.command = (name, desc, sep, respond) => {
-    if (typeof respond === 'undefined') {
-        if (typeof sep === 'undefined') {
-            respond = desc;
-            desc = '';
-        } else {
-            respond = sep;
-            sep = /\s+/
-            desc = ` - ${desc.trim()}`
-        }
+  if (typeof respond === 'undefined') {
+    if (typeof sep === 'undefined') {
+      respond = desc
+      desc = ''
     } else {
-        desc = ` - ${desc.trim()}`
+      respond = sep
+      sep = /\s+/
+      desc = ` - ${desc.trim()}`
     }
+  } else {
+    desc = ` - ${desc.trim()}`
+  }
 
-    sep = new RegExp(typeof sep === 'string' ? quote(sep) : sep, 'g')
-    const regex = new RegExp(`^/${quote(name)}(\\s|$)`, 'g');
+  sep = new RegExp(typeof sep === 'string' ? quote(sep) : sep, 'g')
+  const regex = new RegExp(`^/${quote(name)}(\\s|$)`, 'g')
 
-    return module.exports.pattern(
-        `/${name}${desc}`,
-        regex,
-        message => respond(message, message['text'].replace(regex, '').trim().split(sep))
-    );
-};
+  return module.exports.pattern(
+    `/${name}${desc}`,
+    regex,
+    message => respond(message, message['text'].replace(regex, '').trim().split(sep))
+  )
+}
 
 /**
  * A callback which supplies a message for the bot to send.
@@ -262,16 +261,16 @@ module.exports.command = (name, desc, sep, respond) => {
  * @returns {*}
  */
 module.exports.random = (name, desc, supply) => {
-    if (typeof supply === 'undefined') {
-        supply = desc;
-        desc = undefined;
-    }
+  if (typeof supply === 'undefined') {
+    supply = desc
+    desc = undefined
+  }
 
-    return module.exports.command(
-        name, desc,
-        () => module.exports.send(Array.isArray(supply) ? supply[Math.floor(Math.random() * supply.length)] : supply())
-    );
-};
+  return module.exports.command(
+    name, desc,
+    () => module.exports.send(Array.isArray(supply) ? supply[Math.floor(Math.random() * supply.length)] : supply())
+  )
+}
 
 /**
  * A callback which performs a task.
@@ -287,16 +286,16 @@ module.exports.random = (name, desc, supply) => {
  * @returns {*}
  */
 module.exports.schedule = (desc, when, task) => {
-    if (typeof task === 'undefined') {
-        task = when;
-        when = desc;
-    } else {
-        features.push({ desc : desc });
-    }
+  if (typeof task === 'undefined') {
+    task = when
+    when = desc
+  } else {
+    features.push({ desc: desc })
+  }
 
-    schedule.scheduleJob(when, task);
-    return module.exports;
-};
+  schedule.scheduleJob(when, task)
+  return module.exports
+}
 
 /**
  * Adds a task performed on an interval to the bot.<br/>
@@ -307,22 +306,22 @@ module.exports.schedule = (desc, when, task) => {
  * @param {task} task - A callback which performs a task which is called every 'interval' 'unit'.
  */
 module.exports.every = (desc, interval, unit, task) => {
-    if (typeof task === 'undefined') {
-        task = unit;
-        unit = interval;
-        interval = desc;
-    } else {
-        features.push({ desc : desc });
-    }
+  if (typeof task === 'undefined') {
+    task = unit
+    unit = interval
+    interval = desc
+  } else {
+    features.push({ desc: desc })
+  }
 
-    if (units[unit]) {
-        setInterval(() => task(), units[unit] * interval);
-    } else {
-        console.log(`Invalid unit '${unit}'. Valid units: ${Object.keys(units)}.`);
-    }
+  if (units[unit]) {
+    setInterval(() => task(), units[unit] * interval)
+  } else {
+    console.log(`Invalid unit '${unit}'. Valid units: ${Object.keys(units)}.`)
+  }
 
-    return module.exports;
-};
+  return module.exports
+}
 
 /**
  * Adds a '/help' command which displays all of the bot's commands and its other described features.<br/>
@@ -330,15 +329,15 @@ module.exports.every = (desc, interval, unit, task) => {
  * @returns {*}
  */
 module.exports.help = () => module.exports.command(
-    'help',
-    'Displays help information about the bot.',
-    () => module.exports.send(features.map(feature => feature.desc).filter(desc => desc !== '').join('\n'))
-);
+  'help',
+  'Displays help information about the bot.',
+  () => module.exports.send(features.map(feature => feature.desc).filter(desc => desc !== '').join('\n'))
+)
 
 /**
  * @param args - Arguments, such as a simple port number, passed to the 'listen' function of the 'Server' provided by 'http.createServer'.
  */
 module.exports.listen = args => {
-    features.sort((a, b) => a.desc < b.desc ? -1 : a.desc > b.desc ? 1 : 0);
-    server.listen(args);
-};
+  features.sort((a, b) => a.desc < b.desc ? -1 : a.desc > b.desc ? 1 : 0)
+  server.listen(args)
+}

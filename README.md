@@ -1,7 +1,18 @@
-# My GroupMe Bot
-A simple GroupMe bot building and hosting module.
+# My Groupme Bot
 
-## Examples
+[![NPM version](https://img.shields.io/npm/v/my-groupme-bot.svg)](https://www.npmjs.com/package/my-groupme-bot) [![Build Status](https://img.shields.io/travis/TomerADev/my-groupme-bot.svg)](https://travis-ci.org/TomerADev/my-groupme-bot) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTomerADev%2Fmy-groupme-bot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FTomerADev%2Fmy-groupme-bot?ref=badge_shield) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+> A simple GroupMe bot building and hosting module.
+
+## Install
+
+Install with [npm](https://www.npmjs.com):
+
+```sh
+$ npm i my-groupme-bot --save
+```
+
+## Usage
 
 ### Dad Bot
 The bot, inspired by dads everywhere, takes any declarations about yourself very literally.
@@ -12,16 +23,16 @@ User: I'm feeling great today
 Bot: Hi feeling great today, I'm dad!
 ```
 Code:
-```javascript
-const bot = require('my-groupme-bot');
+```js
+const bot = require('my-groupme-bot')
 
 bot.config('YOUR_BOT_ID')
-    .pattern(
-        /(i'?m|i\s+am)\s+[^.?!]*[.?!]?/gi,
-        (message, matches) => bot.send(matches.map(match =>
-            `Hi ${match.trim().replace(/^(i'?m|i\s+am)\s+/gi, '')}, I'm dad!`
-        ).join('\n'))
-    ).listen(process.env.PORT);
+  .pattern(
+    /(i'?m|i\s+am)\s+[^.?!]*[.?!]?/gi,
+    (message, matches) => bot.send(matches.map(match =>
+      `Hi ${match.trim().replace(/^(i'?m|i\s+am)\s+/gi, '')}, I'm dad!`
+    ).join('\n'))
+  ).listen(process.env.PORT)
 ```
 
 ### Ted and Robin Bot
@@ -34,26 +45,52 @@ Bot: *salutes* general idea
 ```
 Code:
 ```javascript
-const bot = require('my-groupme-bot');
+const bot = require('my-groupme-bot')
 
 bot.config('YOUR_BOT_ID')
-    .pattern(new RegExp(`(${[
-        'general',
-        'private',
-        'corporal',
-        'lieutenant',
-        'major',
-        'captain',
-        'admiral',
-        'colonel',
-        'kernel',
-        'sergeant',
-        'specialist',
-        'marine',
-        'officer'
-    ].join('|')})[^.]*\\.?`, 'gi'),
-        (message, matches) => bot.send(matches.map(match => `*salutes* ${match.trim()}`).join('\n'))
-    ).listen(process.env.PORT);
+  .pattern(new RegExp(`(${[
+    'general',
+    'private',
+    'corporal',
+    'lieutenant',
+    'major',
+    'captain',
+    'admiral',
+    'colonel',
+    'kernel',
+    'sergeant',
+    'specialist',
+    'marine',
+    'officer'
+  ].join('|')})[^.]*\\.?`, 'gi'),
+    (message, matches) => bot.send(matches.map(match => `*salutes* ${match.trim()}`).join('\n'))
+  ).listen(process.env.PORT)
 ```
 
 Documentation for the all the functions can be found [here](http://tomeraberbach.com/my-groupme-bot/module-my-groupme-bot.html) and some more examples can be found in the 'examples' folder.
+
+## Contributing
+
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/TomerADev/my-groupme-bot/issues/new).
+
+## Running Tests
+
+Install dev dependencies:
+
+```sh
+$ npm i -d && npm test
+```
+
+## Author
+
+**Tomer Aberbach**
+
+* [Github](https://github.com/TomerADev)
+* [NPM](https://www.npmjs.com/~tomeraberbach)
+* [LinkedIn](https://www.linkedin.com/in/tomer-a)
+* [Website](https://tomeraberba.ch)
+
+## License
+
+Copyright © 2018 [Tomer Aberbach](https://github.com/TomerADev)
+Released under the [MIT license](https://github.com/TomerADev/my-groupme-bot/blob/master/LICENSE).
