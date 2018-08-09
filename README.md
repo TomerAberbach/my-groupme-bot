@@ -1,6 +1,6 @@
 # My Groupme Bot
 
-[![NPM version](https://img.shields.io/npm/v/my-groupme-bot.svg)](https://www.npmjs.com/package/my-groupme-bot) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FTomerADev%2Fmy-groupme-bot.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FTomerADev%2Fmy-groupme-bot?ref=badge_shield) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM version](https://img.shields.io/npm/v/my-groupme-bot.svg)](https://www.npmjs.com/package/my-groupme-bot) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 > A simple GroupMe bot building and hosting module.
 
