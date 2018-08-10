@@ -11,13 +11,13 @@
     "chat",
     "server"
   ],
-  "homepage": "https://github.com/TomerADev/my-groupme-bot",
+  "homepage": "https://github.com/TomerAberbach/my-groupme-bot",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TomerADev/my-groupme-bot.git"
+    "url": "git+https://github.com/TomerAberbach/my-groupme-bot.git"
   },
   "bugs": {
-    "url": "https://github.com/TomerADev/my-groupme-bot/issues"
+    "url": "https://github.com/TomerAberbach/my-groupme-bot/issues"
   },
   "license": "MIT",
   "files": [

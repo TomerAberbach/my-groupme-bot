@@ -44,7 +44,7 @@ User: Well yeah, that's the general idea
 Bot: *salutes* general idea
 ```
 Code:
-```javascript
+```js
 const bot = require('my-groupme-bot')
 
 bot.config('YOUR_BOT_ID')
@@ -67,11 +67,11 @@ bot.config('YOUR_BOT_ID')
   ).listen(process.env.PORT)
 ```
 
-Documentation for the all the functions can be found [here](http://tomeraberbach.com/my-groupme-bot/module-my-groupme-bot.html) and some more examples can be found in the 'examples' folder.
+Documentation for the all the functions can be found [here](https://tomeraberba.ch/my-groupme-bot/module-my-groupme-bot.html) and some more examples can be found in the 'examples' folder.
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/TomerADev/my-groupme-bot/issues/new).
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/TomerAberbach/my-groupme-bot/issues/new).
 
 ## Running Tests
 
@@ -85,12 +85,12 @@ $ npm i -d && npm test
 
 **Tomer Aberbach**
 
-* [Github](https://github.com/TomerADev)
+* [Github](https://github.com/TomerAberbach)
 * [NPM](https://www.npmjs.com/~tomeraberbach)
 * [LinkedIn](https://www.linkedin.com/in/tomer-a)
 * [Website](https://tomeraberba.ch)
 
 ## License
 
-Copyright © 2018 [Tomer Aberbach](https://github.com/TomerADev)
-Released under the [MIT license](https://github.com/TomerADev/my-groupme-bot/blob/master/LICENSE).
+Copyright © 2018 [Tomer Aberbach](https://github.com/TomerAberbach)
+Released under the [MIT license](https://github.com/TomerAberbach/my-groupme-bot/blob/master/LICENSE).
