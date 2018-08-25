@@ -1,6 +1,6 @@
 {
   "name": "my-groupme-bot",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "Tomer Aberbach <tomeraberbach@gmail.com> (https://tomeraberba.ch)",
   "description": "A simple GroupMe bot building and hosting module.",
   "keywords": [
