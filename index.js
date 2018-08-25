@@ -272,6 +272,7 @@ module.exports.listen = args => {
 /**
  * Uses an arbitrary number of plugins.
  * @param {Plugin[]} plugins - An array of plugins.
+ * @returns {*}
  */
 module.exports.use = (...plugins) => plugins.forEach(plugin => {
   if (module.exports.hasOwnProperty(plugin.name)) {
@@ -282,4 +283,6 @@ module.exports.use = (...plugins) => plugins.forEach(plugin => {
       return module.exports
     }
   }
+
+  return module.exports
 })
