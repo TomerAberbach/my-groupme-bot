@@ -24,35 +24,6 @@
 
 const http = require('http')
 const request = require('request')
-const schedule = require('node-schedule')
-
-const units = {
-  millisecond: 1,
-  milliseconds: 1,
-  millisec: 1,
-  millisecs: 1,
-  ms: 1,
-
-  second: 1000,
-  seconds: 1000,
-  sec: 1000,
-  secs: 1000,
-  s: 1000,
-
-  minute: 60000,
-  minutes: 60000,
-  min: 60000,
-  mins: 60000,
-  m: 60000,
-
-  hour: 3600000,
-  hours: 3600000,
-  h: 3600000,
-
-  day: 86400000,
-  days: 86400000,
-  d: 86400000
-}
 
 let botId
 const features = []
@@ -114,7 +85,7 @@ module.exports.send = (message, imageUrl, cb) => {
 
   if (typeof imageUrl === 'string') {
     params.picture_url = imageUrl
-  } else if (typeof cb === 'undefined') {
+  } else if (cb == null) {
     cb = imageUrl
   }
 
@@ -157,7 +128,7 @@ module.exports.send = (message, imageUrl, cb) => {
  * @returns {*}
  */
 module.exports.feature = (desc, check, respond) => {
-  if (typeof respond === 'undefined') {
+  if (respond == null) {
     respond = check
     check = desc
     desc = ''
@@ -188,7 +159,7 @@ module.exports.feature = (desc, check, respond) => {
  * @returns {*}
  */
 module.exports.pattern = (desc, pattern, respond) => {
-  if (typeof respond === 'undefined') {
+  if (respond == null) {
     respond = pattern
     pattern = desc
     desc = ''
@@ -222,8 +193,8 @@ module.exports.pattern = (desc, pattern, respond) => {
  * @returns {*}
  */
 module.exports.command = (name, desc, sep, respond) => {
-  if (typeof respond === 'undefined') {
-    if (typeof sep === 'undefined') {
+  if (respond == null) {
+    if (sep == null) {
       respond = desc
       desc = ''
     } else {
@@ -261,7 +232,7 @@ module.exports.command = (name, desc, sep, respond) => {
  * @returns {*}
  */
 module.exports.random = (name, desc, supply) => {
-  if (typeof supply === 'undefined') {
+  if (supply == null) {
     supply = desc
     desc = undefined
   }
@@ -270,57 +241,6 @@ module.exports.random = (name, desc, supply) => {
     name, desc,
     () => module.exports.send(Array.isArray(supply) ? supply[Math.floor(Math.random() * supply.length)] : supply())
   )
-}
-
-/**
- * A callback which performs a task.
- * @callback task
- */
-
-/**
- * Adds a scheduled task to the bot.<br/>
- * Returns the module itself to allow for builder pattern.
- * @param {string} [desc] - A description of the scheduled task to be added.
- * @param {string|Date} when - A crontab instruction string or Date object representing when to run the task.
- * @param {task} task - A callback which performs a task which is called at the scheduled times.
- * @returns {*}
- */
-module.exports.schedule = (desc, when, task) => {
-  if (typeof task === 'undefined') {
-    task = when
-    when = desc
-  } else {
-    features.push({ desc: desc })
-  }
-
-  schedule.scheduleJob(when, task)
-  return module.exports
-}
-
-/**
- * Adds a task performed on an interval to the bot.<br/>
- * Returns the module itself to allow for builder pattern.
- * @param {string} [desc] - A description of the task performed on an interval to be added.
- * @param {int} interval - A positive integer representing the number of 'unit' between calling 'task'.
- * @param {string} unit - A time unit of measurement (millisecond, milliseconds, millisec, millisecs, ms, second, seconds, sec, secs, s, minute, minutes, min, mins, m, hour, hours, h, day, days, d).
- * @param {task} task - A callback which performs a task which is called every 'interval' 'unit'.
- */
-module.exports.every = (desc, interval, unit, task) => {
-  if (typeof task === 'undefined') {
-    task = unit
-    unit = interval
-    interval = desc
-  } else {
-    features.push({ desc: desc })
-  }
-
-  if (units[unit]) {
-    setInterval(() => task(), units[unit] * interval)
-  } else {
-    console.log(`Invalid unit '${unit}'. Valid units: ${Object.keys(units)}.`)
-  }
-
-  return module.exports
 }
 
 /**
@@ -341,3 +261,25 @@ module.exports.listen = args => {
   features.sort((a, b) => a.desc < b.desc ? -1 : a.desc > b.desc ? 1 : 0)
   server.listen(args)
 }
+
+/**
+ * A plugin.
+ * @typedef {Object} Plugin
+ * @property {string} name - A name for the plugin.
+ * @property {function} fn - A function to add to the module's members the module as `this`.
+ */
+
+/**
+ * Uses an arbitrary number of plugins.
+ * @param {Plugin[]} plugins - An array of plugins.
+ */
+module.exports.use = (...plugins) => plugins.forEach(plugin => {
+  if (module.exports.hasOwnProperty(plugin.name)) {
+    throw new Error(`Duplicate plugin name '${plugin.name}'!`)
+  } else {
+    module.exports[plugin.name] = (...args) => {
+      plugin.fn.apply(module.exports, args)
+      return module.exports
+    }
+  }
+})

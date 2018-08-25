@@ -149,7 +149,7 @@
     
 
     
-    <h4 class="name" id=".command"><span class="type-signature">(static) </span>command<span class="signature">(name, desc<span class="signature-attributes">opt</span>, respond)</span><span class="type-signature"> &rarr; {*}</span></h4>
+    <h4 class="name" id=".command"><span class="type-signature">(static) </span>command<span class="signature">(name, desc<span class="signature-attributes">opt</span>, sep<span class="signature-attributes">opt</span>, respond)</span><span class="type-signature"> &rarr; {*}</span></h4>
     
 
     
@@ -260,6 +260,39 @@ Returns the module itself to allow for builder pattern.
 
         <tr>
             
+                <td class="name"><code>sep</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">A RegExp or string to separate the command arguments.</td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>respond</code></td>
             
 
@@ -325,7 +358,7 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line220">line 220</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line195">line 195</a>
     </li></ul></dd>
     
 
@@ -479,7 +512,7 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line93">line 93</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line63">line 63</a>
     </li></ul></dd>
     
 
@@ -520,247 +553,6 @@ Returns the module itself to allow for builder pattern.
 </dl>
 
     
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".every"><span class="type-signature">(static) </span>every<span class="signature">(desc<span class="signature-attributes">opt</span>, interval, unit, task)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Adds a task performed on an interval to the bot.<br/>
-Returns the module itself to allow for builder pattern.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>desc</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">A description of the task performed on an interval to be added.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>interval</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">int</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">A positive integer representing the number of 'unit' between calling 'task'.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>unit</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">A time unit of measurement (millisecond, milliseconds, millisec, millisecs, ms, second, seconds, sec, secs, s, minute, minutes, min, mins, m, hour, hours, h, day, days, d).</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>task</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">task</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">A callback which performs a task which is called every 'interval' 'unit'.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line297">line 297</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -948,7 +740,7 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line156">line 156</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line130">line 130</a>
     </li></ul></dd>
     
 
@@ -1053,7 +845,7 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line320">line 320</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line251">line 251</a>
     </li></ul></dd>
     
 
@@ -1197,7 +989,7 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line329">line 329</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line260">line 260</a>
     </li></ul></dd>
     
 
@@ -1410,7 +1202,7 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line187">line 187</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line161">line 161</a>
     </li></ul></dd>
     
 
@@ -1642,238 +1434,7 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line252">line 252</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">*</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".schedule"><span class="type-signature">(static) </span>schedule<span class="signature">(desc<span class="signature-attributes">opt</span>, when, task)</span><span class="type-signature"> &rarr; {*}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Adds a scheduled task to the bot.<br/>
-Returns the module itself to allow for builder pattern.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>desc</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">A description of the scheduled task to be added.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>when</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">Date</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">A crontab instruction string or Date object representing when to run the task.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>task</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">task</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">A callback which performs a task which is called at the scheduled times.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line277">line 277</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line234">line 234</a>
     </li></ul></dd>
     
 
@@ -2102,7 +1663,142 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line110">line 110</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".use"><span class="type-signature">(static) </span>use<span class="signature">(plugins)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Uses an arbitrary number of plugins.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>plugins</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Plugin></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">An array of plugins.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line276">line 276</a>
     </li></ul></dd>
     
 
@@ -2243,7 +1939,7 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line135">line 135</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line109">line 109</a>
     </li></ul></dd>
     
 
@@ -2419,7 +2115,7 @@ Returns the module itself to allow for builder pattern.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line205">line 205</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line179">line 179</a>
     </li></ul></dd>
     
 
@@ -2955,7 +2651,7 @@ Go to the <a href="https://dev.groupme.com/tutorials/bots">GroupMe website</a> f
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line172">line 172</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line146">line 146</a>
     </li></ul></dd>
     
 
@@ -2977,6 +2673,153 @@ Go to the <a href="https://dev.groupme.com/tutorials/bots">GroupMe website</a> f
 
 
 
+
+
+
+
+
+
+            
+                
+<h4 class="name" id="~Plugin">Plugin</h4>
+
+
+
+
+<div class="description">
+    A plugin.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A name for the plugin.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A function to add to the module's members the module as `this`.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line265">line 265</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
 
 
 
@@ -3090,7 +2933,7 @@ Go to the <a href="https://dev.groupme.com/tutorials/bots">GroupMe website</a> f
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line142">line 142</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -3237,7 +3080,7 @@ Go to the <a href="https://dev.groupme.com/tutorials/bots">GroupMe website</a> f
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line98">line 98</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -3323,7 +3166,7 @@ Go to the <a href="https://dev.groupme.com/tutorials/bots">GroupMe website</a> f
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line237">line 237</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line219">line 219</a>
     </li></ul></dd>
     
 
@@ -3370,92 +3213,6 @@ Go to the <a href="https://dev.groupme.com/tutorials/bots">GroupMe website</a> f
 
 
             
-                
-
-    
-
-    
-    <h4 class="name" id="~task"><span class="type-signature"></span>task<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    A callback which performs a task.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line264">line 264</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
     
 
     
@@ -3475,7 +3232,7 @@ Go to the <a href="https://dev.groupme.com/tutorials/bots">GroupMe website</a> f
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed May 23 2018 17:47:16 GMT-0400 (EDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Aug 24 2018 22:20:28 GMT-0400 (Eastern Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
