@@ -274,15 +274,17 @@ module.exports.listen = args => {
  * @param {Plugin[]} plugins - An array of plugins.
  * @returns {*}
  */
-module.exports.use = (...plugins) => plugins.forEach(plugin => {
-  if (module.exports.hasOwnProperty(plugin.name)) {
-    throw new Error(`Duplicate plugin name '${plugin.name}'!`)
-  } else {
-    module.exports[plugin.name] = (...args) => {
-      plugin.fn.apply(module.exports, args)
-      return module.exports
+module.exports.use = (...plugins) => {
+  plugins.forEach(plugin => {
+    if (module.exports.hasOwnProperty(plugin.name)) {
+      throw new Error(`Duplicate plugin name '${plugin.name}'!`)
+    } else {
+      module.exports[plugin.name] = (...args) => {
+        plugin.fn.apply(module.exports, args)
+        return module.exports
+      }
     }
-  }
+  })
 
   return module.exports
-})
+}
