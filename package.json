@@ -32,7 +32,6 @@
     "publish:major": "npm test && npm version major -m \"%s\" && npm publish && npm run publish:git"
   },
   "dependencies": {
-    "node-schedule": "^1.3.0",
     "request": "^2.87.0"
   },
   "devDependencies": {
